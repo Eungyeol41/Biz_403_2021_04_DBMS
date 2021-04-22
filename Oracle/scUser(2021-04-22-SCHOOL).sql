@@ -77,6 +77,7 @@ SELECT * FROM tbl_student;
 
 -- PRIMARY KEY : UNIQUE + NOT NULL + 기타 조건 + INDEX 자동 생성
 --      매우 강력한, 가장 우선순위가 높은 제약조건이다.
+DROP TABLE tbl_student;
 CREATE TABLE tbl_student (
         st_num CHAR(5) PRIMARY KEY,
         st_name nVARCHAR2(20) NOT NULL,
