@@ -60,8 +60,6 @@ CHAR() Type의 문자열 칼럼은 실제 저장되는 데이터 type에 따라 
 
 고정문자열 칼럼으로 조회를 할 때 아래와 같은 조건을 부여하면 데이터가 조회되지 않는 현상이 발생할 수 있다
 WHERE 코드 = '00001'
-???
-
 */
 
 DROP VIEW view_도서정보;
@@ -82,21 +80,43 @@ CREATE VIEW view_도서정보 AS
             ON TB.bk_acode = TA.au_code
 );
 
+SELECT * FROM view_도서정보;
 
+-- 조건을 부여하여 찾기
+-- PK 칼럼으로 데이터 조회
+SELECT * FROM view_도서정보
+WHERE ISBN = '9791188850426';
 
+-- 도서명이 엘리트 문자열로 시작되는 모든(List) 데이터
+SELECT * FROM view_도서정보
+WHERE 도서명 LIKE '엘리트%';
+
+-- 출판사명에 넥 문자열이 포함된 모든 데이터
+SELECT * FROM view_도서정보
+WHERE 출판사명 LIKE '%넥%';
 
 -- 출판일이 2018인 모든 데이터
-SELECT * FROM "VIEW_도서정보"
+SELECT * FROM view_도서정보
 WHERE 출판일 >= '2018-01-01' AND 출판일 <= '2018-12-31';
 
-SELECT * FROM "VIEW_도서정보"
+SELECT * FROM view_도서정보
 WHERE 출판일 BETWEEN '2018-01-01' AND '2018-12-31';
 
 -- SUBSTR() 함수를 사용한 문자열 자르기
--- SUBSTR(문자열 데이터, 시작위치, 개수)
--- 타 DB에서는 LEFT(문자열, 몇 글자) 함수를 사용
---      RIGHT(문자열, 몇 글자) 오른쪽에서 몇 글자
-SELECT * FROM "VIEW_도서정보"
-WHERE SUBSTR(출판일, 0, 4) = '2018';
+-- SUBSTR(문자열데이터, 시작외치, 개수)
+-- 타 DB에서는 LEFT(문자열, 몇글자)함수를 사용
+--      RIGHT(문자열, 몇글자) 오른쪽에서 몇글자
+SELECT * FROM view_도서정보
+WHERE SUBSTR(출판일,0,4) = '2018';
 
+-- 출판일 칼럼의 데이터를 앞에서 4글자만 잘라서 보여라
+SELECT SUBSTR(출판일,0,4) AS 출판년도 FROM view_도서정보;
 
+-- 출판일 칼럼의 데이터를 오른쪽으로 부터 4글자만 잘라서 보여라
+SELECT SUBSTR(출판일,-5) AS 출판월일 FROM view_도서정보;
+
+DELETE FROM tbl_books WHERE bk_isbn = ?? ;
+
+-- 1 OR 1 = 1
+DELETE FROM tbl_books
+WHERE bk_isbn = 1 OR 1 = 1;
