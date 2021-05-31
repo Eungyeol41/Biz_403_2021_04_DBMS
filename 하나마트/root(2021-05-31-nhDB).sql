@@ -1,0 +1,4 @@
+-- 관리자 접속
+CREATE DATABASE nhDB;
+
+CREATE USER nhUser IDENTIFIED BY '1234';
