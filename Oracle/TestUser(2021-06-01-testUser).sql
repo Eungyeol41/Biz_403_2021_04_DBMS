@@ -179,8 +179,7 @@ REFERENCES tbl_author(au_code); -- 참조대상
 -- 리처드 쇼튼의 연락처를 변경해보자.
 
 -- '리처드 쇼튼'이 여러 명 있는 지 확인하기
-SELECT au_name, au_tel, au_code
-FROM tbl_author
+SELECT * FROM tbl_author
 WHERE au_name = '리처드 쇼튼';
 
 -- 이렇게 적을 경우 동명이인의 전화번호가 모두 바뀌게 된다.
